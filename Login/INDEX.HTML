@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
+<meta name="theme-color" content="#020617">
+</head>
+
+<body>
+
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+</div>
+
+<div class="form-container">
+  <p class="title">Entrar</p>
+
+  <form onsubmit="login(event)">
+    <div class="input-group">
+      <label>Usuário</label>
+      <input type="text" id="username">
+      <div class="error" id="userError">Preencha o usuário</div>
+    </div>
+
+    <div class="input-group">
+      <label>Senha</label>
+      <div style="position:relative;">
+        <input type="password" id="password">
+        <span onclick="togglePass()" class="eye">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+      </div>
+      <div class="error" id="passError">Senha inválida (use 123)</div>
+    </div>
+
+    <button class="sign" id="loginBtn">Entrar</button>
+
+    <label class="remember">
+      <input type="checkbox" id="remember">
+      Lembrar usuário
+    </label>
+  </form>
+
+  <div class="social-message">
+    <div class="line"></div>
+    <div class="message">Entrar com redes sociais</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="social-icons">
+    <div class="icon" onclick="socialLogin('Google')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png">
+    </div>
+    <div class="icon" onclick="socialLogin('Facebook')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
+    </div>
+    <div class="icon" onclick="socialLogin('GitHub')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
+    </div>
+  </div>
+
+  <p class="signup">
+    Não tem conta? <a href="cadastro.html">Cadastrar-se</a>
+  </p>
+</div>
+
+</body>
+</html>
