@@ -1,76 +1,71 @@
-  <!DOCTYPE html>
-  <html lang="pt-br">
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
 
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 
-  <meta name="theme-color" content="#020617">
-  </head>
+<meta name="theme-color" content="#020617">
+</head>
 
-  <body>
+<body>
 
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="spinner"></div>
-  </div>
-
-  <div class="form-container">
-    <p class="title">Entrar</p>
-
-      <form id="loginForm" novalidate>
-      <div class="input-group">
-        <input type="email" id="username" required autocomplete="email" name="username">
-        <label for="username">Email</label>
-      </div>
-
-      <div class="input-group">
-  <div class="password-wrapper">
-    <input type="password" id="password" required autocomplete="current-password" name="password">
-    <label for="password">Senha</label>
-
-    <span onclick="togglePass()" class="eye">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-        <circle cx="12" cy="12" r="3"/>
-      </svg>
-    </span>
-  </div>
-
+<div class="loader" id="loader">
+  <div class="spinner"></div>
 </div>
 
-      <button class="sign" id="loginBtn" type="submit">Entrar</button>
+<div class="form-container">
+  <p class="title">Entrar</p>
 
-      <label class="remember">
-        <input type="checkbox" id="remember">
-        Lembrar usuário
-      </label>
-    </form>
+  <form id="loginForm">
 
-    <div class="social-message">
-      <div class="line"></div>
-      <div class="message">Entrar com redes sociais</div>
-      <div class="line"></div>
+    <div class="input-group">
+      <input type="email" id="username" required>
+      <label>Email</label>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="password" required>
+      <label>Senha</label>
+    </div>
+
+    <button class="sign" type="submit">Entrar</button>
+
+    <label class="remember">
+      <input type="checkbox" id="remember">
+      <span class="checkmark"></span>
+      <span>Lembrar login</span>
+    </label>
+
+    <div class="divider">
+      <span>Continuar com</span>
     </div>
 
     <div class="social-icons">
+
       <button class="icon" type="button" onclick="socialLogin('Google')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png">
       </button>
+
       <button class="icon" type="button" onclick="socialLogin('Facebook')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
       </button>
+
       <button class="icon" type="button" onclick="socialLogin('GitHub')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
       </button>
+
     </div>
 
     <p class="signup">
       Não tem conta? <a href="cadastro.html">Cadastrar-se</a>
     </p>
-  </div>
 
-  </body>
-  </html>
+  </form>
+</div>
+
+</body>
+</html>
