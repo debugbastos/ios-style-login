@@ -13,6 +13,3 @@ Interface de login moderna com foco em UX/UI mobile.
 - HTML
 - CSS
 - JavaScript
-
-## Preview
-(Coloque print aqui depois)
