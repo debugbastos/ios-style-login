@@ -1,93 +1,56 @@
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const remember = document.getElementById("remember");
-const loader = document.getElementById("loader");
-const form = document.getElementById("loginForm");
+window.addEventListener("DOMContentLoaded", () => {
 
-/* FOCO INICIAL */
-username.focus();
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const loader = document.getElementById("loader");
+  const form = document.getElementById("loginForm");
+  const googleBtn = document.getElementById("googleBtn");
 
-/* CARREGAR USUÁRIO SALVO */
-window.onload = () => {
-  const saved = localStorage.getItem("user");
-  if (saved) {
-    username.value = saved;
-    remember.checked = true;
-  }
-};
+  username?.focus();
 
-/* SUBMIT DO FORM */
-form.addEventListener("submit", login);
-
-/* MOSTRAR / OCULTAR SENHA */
-function togglePass() {
-  if (password.type === "password") {
-    password.type = "text";
-  } else {
-    password.type = "password";
-  }
-}
-
-/* LOGIN */
-function login(e) {
-  e.preventDefault();
-
-  let valid = true;
-  const correctPassword = "123"; // simulação
-
-  /* VALIDAÇÃO */
-  if (!username.value) {
-    username.classList.add("shake");
-    valid = false;
+  function showLoader() {
+    if (loader) loader.style.display = "flex";
   }
 
-  if (password.value !== correctPassword) {
-    password.classList.add("shake");
-    valid = false;
+  function hideLoader() {
+    if (loader) loader.style.display = "none";
   }
 
-  /* REMOVE ANIMAÇÃO */
-  setTimeout(() => {
-    username.classList.remove("shake");
-    password.classList.remove("shake");
-  }, 300);
+  // LOGIN 
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  /* SUCESSO */
-  if (valid) {
-    if (remember.checked) {
-      localStorage.setItem("user", username.value);
-    } else {
-      localStorage.removeItem("user");
+    if (!username.value || !password.value) {
+      alert("Preencha os campos");
+      return;
     }
 
-    showLoader(() => {
-      alert("Login realizado com sucesso!");
-    });
-  }
-}
+    showLoader();
 
-/* LIMPAR ERRO AO DIGITAR */
-username.addEventListener("input", () => {
-  username.classList.remove("shake");
-});
+    setTimeout(() => {
+      hideLoader();
 
-password.addEventListener("input", () => {
-  password.classList.remove("shake");
-});
+      alert("Login simulado com sucesso!");
 
-/* LOGIN SOCIAL (simulação) */
-function socialLogin(provider) {
-  showLoader(() => {
-    alert("Login com " + provider);
+      // só navegação visual
+      window.location.href = "home.html";
+
+    }, 800);
   });
-}
 
-/* LOADER */
-function showLoader(callback) {
-  loader.style.display = "flex";
+  //  GOOGLE 
+  googleBtn?.addEventListener("click", () => {
 
-  setTimeout(() => {
-    loader.style.display = "none";
-    callback();
-  }, 1200);
-}
+    showLoader();
+
+    setTimeout(() => {
+      hideLoader();
+
+      alert("Login com Google (simulado)");
+
+      window.location.href = "home.html";
+
+    }, 800);
+  });
+
+});
