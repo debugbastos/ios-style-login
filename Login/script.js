@@ -1,27 +1,65 @@
 window.addEventListener("DOMContentLoaded", () => {
 
-  const username = document.getElementById("username");
-  const password = document.getElementById("password");
   const loader = document.getElementById("loader");
-  const form = document.getElementById("loginForm");
-  const googleBtn = document.getElementById("googleBtn");
-
-  username?.focus();
 
   function showLoader() {
-    if (loader) loader.style.display = "flex";
+    loader.style.display = "flex";
   }
 
   function hideLoader() {
-    if (loader) loader.style.display = "none";
+    loader.style.display = "none";
   }
 
-  // LOGIN 
-  form?.addEventListener("submit", (e) => {
+  window.showForm = (type) => {
+    document.getElementById("loginForm").classList.remove("active");
+    document.getElementById("registerForm").classList.remove("active");
+
+    if (type === "login") {
+      document.getElementById("loginForm").classList.add("active");
+    } else {
+      document.getElementById("registerForm").classList.add("active");
+    }
+  };
+
+  window.togglePassword = (id) => {
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+  };
+
+  document.getElementById("registerForm").addEventListener("submit", (e) => {
     e.preventDefault();
 
-    if (!username.value || !password.value) {
-      alert("Preencha os campos");
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+
+    if (pass !== confirm) {
+      alert("Senhas não coincidem");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify({ name, email, pass }));
+
+    showLoader();
+
+    setTimeout(() => {
+      hideLoader();
+      alert("Cadastro realizado");
+      showForm("login");
+    }, 800);
+  });
+
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value;
+    const pass = document.getElementById("loginPassword").value;
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || user.email !== email || user.pass !== pass) {
+      alert("Login inválido");
       return;
     }
 
@@ -29,27 +67,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       hideLoader();
-
-      alert("Login simulado com sucesso!");
-
-      // só navegação visual
+      alert("Login OK");
       window.location.href = "home.html";
-
-    }, 800);
-  });
-
-  //  GOOGLE 
-  googleBtn?.addEventListener("click", () => {
-
-    showLoader();
-
-    setTimeout(() => {
-      hideLoader();
-
-      alert("Login com Google (simulado)");
-
-      window.location.href = "home.html";
-
     }, 800);
   });
 
